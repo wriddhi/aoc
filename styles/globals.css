@@ -1,0 +1,47 @@
+:root {
+  --gray: #191919;
+  --white: #FFFFFF;
+  --lightblue: #202033;
+  --darkblue: #161623;
+}
+
+/* body {
+  background-color: var(--gray);
+  color: var(--white);
+}  */
+
+body{
+  background: var(--darkblue);
+  color: white;
+}
+
+*:required {
+  background-color: blueviolet;
+  color: black;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input[type=radio] {
+  background-color: blueviolet;
+  cursor: pointer;
+}
+
+input[type=radio]:checked {
+  background-color: blueviolet;
+  cursor: pointer;
+}
+

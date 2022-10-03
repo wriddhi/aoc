@@ -1,0 +1,41 @@
+.header {
+    padding: 2rem;
+    border-bottom: 1px solid white;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 80%;
+    margin: auto;
+
+    /* display: grid;
+    grid-template-columns: 1fr 20fr 1fr;
+    align-items: center; */
+
+    display: flex;
+    justify-content: center;
+}
+
+.home {
+    font-size: 3rem;
+    color: lightgray;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    /* background-color: #191919;
+    padding: 0.5rem;
+    border-radius: 100%;
+    box-shadow: 0 0 10px 1px black;
+
+    display: grid;
+    place-items: center;*/
+}
+
+.home:hover{
+    color: white;
+    /* box-shadow: 0 0 12px 4px black; */
+}
+
+@media (max-width: 1000px){
+    .header{
+        font-size: 1rem;
+        padding: 1rem 1rem;
+    }
+}

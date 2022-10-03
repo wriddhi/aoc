@@ -1,0 +1,138 @@
+.nav {
+    width: 80vw;
+    margin: 2rem auto;   
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    border-bottom: 5px solid var(--lightblue);
+
+    background-color: var(--darkblue);
+
+    /* box-shadow: 0 10px 10px black; */
+}
+
+.navtab {
+    font-size: 1.75rem;
+    text-align: center;
+    padding: 2rem;
+    color: blueviolet;
+}
+
+.navtab span {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.active {
+    border-bottom: 5px solid blueviolet;
+    background-color: var(--lightblue);
+    border-radius: 10px 10px 0 0;
+    transition: 10;
+}
+
+.form {
+    margin: 2rem auto;
+    padding: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+
+    width: 80vw;
+    background-color: var(--lightblue);
+    /* backdrop-filter: blur(10px); */
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+
+    position: relative;
+}
+
+.intro {
+    margin: 2rem 0;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoutBtn {
+    font-size: 1.5rem;
+    outline: none;
+    border: 3px solid crimson;
+    border-radius: 10px;
+    background: var(--darkblue);
+    color: crimson;
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.logoutBtn:hover {
+    background: crimson;
+    color: var(--darkblue);
+    transition: 0.1s ease-in;
+}
+
+.button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    outline: none;
+    border: 3px solid blueviolet;
+    border-radius: 10px;
+    background: var(--darkblue);
+    color: blueviolet;
+    padding: 1.2rem;
+    cursor: pointer;
+}
+
+.button:hover{
+    background: blueviolet;
+    color: var(--darkblue);
+    transition: 0.3s ease-in;
+}
+
+.quizzesHeading {
+    font-size: 2rem;
+}
+
+.quizDetailsTab {
+    background-color: var(--darkblue);
+    color: gray;
+    padding: 1rem;
+    font-size:1.2rem;
+    width: 100%;
+
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.5fr;
+}
+
+.quizDetailsTab p {
+    text-align: center;
+}
+
+.quizCard {
+    color: white;
+    padding: 1rem;
+    font-size:1.2rem;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.5fr;
+}
+
+.quizCard p{
+    text-align: center;
+    overflow: hidden;
+}
+
+.quizCard p:last-child {
+    color: blueviolet;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

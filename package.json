@@ -1,0 +1,27 @@
+{
+  "name": "aoc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "ip": "next dev -H 192.168.29.57",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "next": "12.1.5",
+    "qr-code-styling": "^1.6.0-rc.1",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-timer-hook": "^3.0.5"
+  },
+  "devDependencies": {
+    "axios": "^0.27.2",
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5",
+    "firebase": "^9.9.2",
+    "react-icons": "^4.3.1"
+  }
+}

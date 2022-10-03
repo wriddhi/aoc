@@ -1,0 +1,103 @@
+.form {
+    margin: 2rem auto;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 40%;
+    background-color: var(--lightblue);
+    box-shadow: 0 0 10px 2px black;
+    border-radius: 5px;
+}
+
+.form h1 {
+    color: lime;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.statusBox {
+    grid-column: span 4;
+    font-size: 1.1rem;
+    font-family: 'Monospace';
+    padding: 1rem 2rem;
+    background-color: var(--darkblue);
+    color: yellow;
+    border-radius: 5px;
+    outline: 2px solid yellow;
+}
+
+
+.formLabel, .formInput {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.formInput {
+    border: none;
+    padding: 1rem 2rem;
+    background-color: var(--darkblue);
+    color: white;
+    border-radius: 5px;
+    outline: none;
+}
+
+.formInput:focus-within{
+    outline: 1px solid lime;
+}
+
+.btn {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    color: lime;
+    border: 1px solid lime;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.btn:hover {
+    color: black;
+    background-color: lime;
+}
+
+.options {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.options a {
+    color: lime;
+    font-weight: 600;
+}
+
+.options a:hover {
+    text-shadow: 0 0 2px lime;
+}
+
+@media (max-width: 600px) {
+    .form{
+        width: 90%;
+        padding: 2rem 1rem;
+    }
+
+    .form h1{
+        font-size: 1.5rem;
+    }
+
+    .formLabel, .formInput, .btn {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    .options {
+        font-size: 1rem;
+    }
+}

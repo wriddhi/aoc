@@ -1,0 +1,84 @@
+.landing, .gif, .btn {
+    font-size: 1.5rem;
+}
+
+.container {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+.landing{
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 0 10px 2px black;
+    background-color: var(--lightblue);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.gif{
+    width: 100%;
+    aspect-ratio: 1.5/1;
+    background-color: lightblue;
+}
+
+.btns{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--darkblue);
+    align-items: center;
+}
+
+.btn {
+    font-weight: bold;
+    width: 49%;
+    padding: 0.75rem;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.green {
+    color: lime;
+    border: 1px solid lime;
+}
+
+.red {
+    color: crimson;
+    border: 1px solid crimson;
+}
+
+.green:hover{
+    background-color: lime;
+    color: var(--darkblue);
+}
+
+.red:hover{
+    background-color: crimson;
+    color: var(--darkblue);
+}
+
+@media (max-width: 600px){
+
+    .container {
+        gap: 10rem;
+    }
+
+    .btn{
+        font-size: 1rem;
+    }
+
+    .landing{
+        width: 100%;
+    }
+}

@@ -1,0 +1,150 @@
+.form {
+    margin: 2rem auto;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+    width: 50%;
+    background-color: var(--lightblue);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.form h1 {
+    grid-column: span 4;
+    color: crimson;
+}
+
+.statusBox {
+    grid-column: span 4;
+    font-size: 1.1rem;
+    font-family: 'Monospace';
+    padding: 1rem 2rem;
+    background-color: var(--darkblue);
+    color: yellow;
+    border-radius: 5px;
+    outline: 2px solid yellow;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    grid-column: span 2;
+    position: relative;
+}
+
+.formLabel, .formInput {
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+.formLabel {
+    user-select: none;
+}
+
+.formInput {
+    border: none;
+    padding: 1rem 2rem;
+    background-color: var(--darkblue);
+    color: white;
+    border-radius: 5px;
+    outline: none;
+}
+
+.passbtn {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(-25%, -25%);
+
+    display: grid;
+    place-items: center;
+    width: fit-content;
+    aspect-ratio: 1/1;
+    padding: 0.5rem;
+    /* background-color: var(--lightblue);
+    border-radius: 100%;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.5); */
+    font-size: 1.5rem;
+    color: lightslategray;
+}
+
+.span1{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    grid-column: span 1;
+}
+
+.formInput:focus-within{
+    outline: 1px solid crimson;
+}
+
+.formInput#designation {
+    color: blueviolet;
+    padding-right: 5rem;
+}
+
+.btn {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    color: crimson;
+    border: 1px solid crimson;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    grid-column: span 4;
+}
+
+.btn:hover {
+    color: black;
+    background-color: crimson;
+}
+
+.options {
+    font-size: 1.2rem;
+    grid-column: span 4;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.options a {
+    color: crimson;
+    font-weight: 600;
+}
+
+.options a:hover {
+    text-shadow: 0 0 2px crimson;
+}
+
+@media (max-width: 1000px) {
+    .form{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        padding: 2rem 1rem;
+    }
+
+    .form h1{
+        font-size: 1.5rem;
+    }
+
+    .formLabel, .formInput, .btn {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    .formInput {
+        padding: 1rem;
+    }
+
+    .options {
+        font-size: 1rem;
+    }
+}
