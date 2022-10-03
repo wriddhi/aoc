@@ -63,7 +63,7 @@ function LoginForm() {
             </section>
             <button className={styles.btn} onClick={handleLogin}>Login</button>
             <span className={styles.options}>Forgot Password? <Link href='/login'>Click here</Link></span>
-            <span className={styles.options}>Don't have an account? <Link href='/signup'>Sign Up</Link></span>
+            <span className={styles.options}>Don&apos;t have an account? <Link href='/signup'>Sign Up</Link></span>
         </form>
   )
 }
