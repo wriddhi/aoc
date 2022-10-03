@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useMemo } from 'react'
 import dynamic from 'next/dynamic' 
 import QRCodeStyling from 'qr-code-styling'
 import styles from '../styles/QrCode.module.css'
@@ -10,32 +10,34 @@ export default function QrCode({url, visible, setQrCode}) {
     const qrRef = useRef(null)
     const blur = useRef(null)
 
-    const qrCode = new QRCodeStyling ({
-        width: 200,
-        height: 200,
-        dotsOptions: {
-            color: "#161623",
-            // color: "#ffffff",
-            type: "rounded"
-        },
-        cornersSquareOptions: {
-            color: "#161623",
-            // color: "#ffffff",
-            type: "extra-rounded"
-        },
-        cornersDotOptions: {
-            type: "dots"
-        },
-        imageOptions: {
-            crossOrigin: "anonymous",
-            margin: 20
-        },
-        backgroundOptions: {
-            // color: "#202033"
-            color: "gray"
-        },
-        data: url
-    })
+    const qrCode = useMemo(() => 
+        qrCode = new QRCodeStyling ({
+            width: 200,
+            height: 200,
+            dotsOptions: {
+                color: "#161623",
+                // color: "#ffffff",
+                type: "rounded"
+            },
+            cornersSquareOptions: {
+                color: "#161623",
+                // color: "#ffffff",
+                type: "extra-rounded"
+            },
+            cornersDotOptions: {
+                type: "dots"
+            },
+            imageOptions: {
+                crossOrigin: "anonymous",
+                margin: 20
+            },
+            backgroundOptions: {
+                // color: "#202033"
+                color: "gray"
+            },
+            data: url
+        })
+    , []);
 
     const handleDownload = () => {
         qrCode.download({
@@ -59,16 +61,15 @@ export default function QrCode({url, visible, setQrCode}) {
         qrCode.append(qrRef.current)
     }, [qrCode])
 
-    if(!qrCode){
-        return null
-    }
-
     useEffect(() => {
         const blurStyle = blur.current.style
         blurStyle.height = document.documentElement.offsetHeight+"px"
+        
     }, [blur])
     
-
+    if(!qrCode){
+        return null
+    }
 
     return (
         <div className={styles.blur} id="blur" ref={blur}>

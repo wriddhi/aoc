@@ -11,9 +11,11 @@ export default function Dashboard() {
 
   const { user, logout } = useAuth()
 
-  useEffect(() => {
-    localStorage.setItem("user", user.uid)
-  }, [])
+  localStorage.setItem("user", user.uid)
+  
+  // useEffect(() => {
+  //   localStorage.setItem("user", user.uid)
+  // }, [])
   
 
   return (

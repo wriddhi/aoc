@@ -70,7 +70,7 @@ const Quiz = ({question, answers, setAnswers}) => {
 }
 
 
-function slug() {
+function Slug() {
 
     const { user } = useAuth()
 
@@ -123,9 +123,11 @@ function slug() {
         router.push('/dashboard')
     }
 
-    useEffect(() => {
-        return getQuizzes
-    }, [])
+    getQuizzes()
+
+    // useEffect(() => {
+    //     return getQuizzes
+    // }, [])
 
     return (
         <div className={styles.form}>
@@ -136,4 +138,4 @@ function slug() {
     )
 }
 
-export default slug
+export default Slug

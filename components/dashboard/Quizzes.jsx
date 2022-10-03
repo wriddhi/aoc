@@ -64,9 +64,11 @@ function Quizzes() {
     setQuizzes(quizArray)
   }
 
-  useEffect(() => {
-    return getQuizzes
-  }, [])
+  getQuizzes()
+
+  // useEffect(() => {
+  //   return getQuizzes
+  // }, [])
   
   // useEffect(() => {
   //   console.log("Quizzes array was changed")

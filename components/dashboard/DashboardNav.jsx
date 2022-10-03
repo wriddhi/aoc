@@ -27,9 +27,11 @@ function DashboardNav() {
         }).catch(error => {alert(error)})
     }
 
-    useEffect(() => {
-        gatherDoc()
-    }, [])
+    gatherDoc()
+
+    // useEffect(() => {
+    //     gatherDoc()
+    // }, [])
 
     useEffect(() => {
         if(tab==='profile'){
