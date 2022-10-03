@@ -5,10 +5,10 @@ import styles from '../styles/QrCode.module.css'
 
 import { MdOutlineContentCopy, MdOutlineClose } from 'react-icons/md'
 
-export default function QrCode({url, visible, hideQrCode}) {
-    
-    const [close, setClose] = useState(false)
+export default function QrCode({url, visible, setQrCode}) {
+
     const qrRef = useRef(null)
+    const blur = useRef(null)
 
     const qrCode = new QRCodeStyling ({
         width: 200,
@@ -43,38 +43,44 @@ export default function QrCode({url, visible, hideQrCode}) {
         });
     }
 
-    const handleCopy = () => {
+    const handleCopy = async() => {
         try {
-            navigator.clipboard.writeText(url)
+            await navigator.clipboard.writeText(url)
         } catch (error) {
             console.error('This website does not have permission to copy text on clipboard')
         }
     }
 
     const closeWindow = () => {
-        // setClose(true)
-        hideQrCode(false)
+        setQrCode(false)
     }
 
     useEffect(() => {
         qrCode.append(qrRef.current)
     }, [qrCode])
 
-    if(close){
-        return (
-            null
-        )
+    if(!qrCode){
+        return null
     }
 
+    useEffect(() => {
+        const blurStyle = blur.current.style
+        blurStyle.height = document.documentElement.offsetHeight+"px"
+    }, [blur])
+    
+
+
     return (
-        <div className={styles.qrContainer}>
-            <span className={styles.closeWindow} onClick={closeWindow}><MdOutlineClose/></span>
-            <div className={styles.qrCode} ref={qrRef}/>
-            <button className={styles.downloadBtn} onClick={handleDownload}>Download</button>
-            <h1>OR</h1>
-            <div className={styles.copyLink}>
-                <input disabled type="text" value={url}/>
-                <abbr title="Copy link to clipboard"><MdOutlineContentCopy onClick={handleCopy} className={styles.copyBtn}/></abbr>
+        <div className={styles.blur} id="blur" ref={blur}>
+            <div className={styles.qrContainer}>
+                <span className={styles.closeWindow} onClick={closeWindow}><MdOutlineClose/></span>
+                <div className={styles.qrCode} ref={qrRef}/>
+                <button className={styles.downloadBtn} onClick={handleDownload}>Download</button>
+                <h1>OR</h1>
+                <div className={styles.copyLink}>
+                    <input disabled type="text" value={url}/>
+                    <abbr title="Copy link to clipboard"><MdOutlineContentCopy onClick={handleCopy} className={styles.copyBtn}/></abbr>
+                </div>
             </div>
         </div>
     )

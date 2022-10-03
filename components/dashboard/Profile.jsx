@@ -6,7 +6,6 @@ import { app, auth, db } from '../../firebaseConfig'
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 
 import { AiTwotoneEdit } from 'react-icons/ai'
-import { gather } from '@tensorflow/tfjs'
 
 function Profile() {
 

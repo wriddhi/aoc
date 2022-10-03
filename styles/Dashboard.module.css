@@ -44,11 +44,9 @@
 
     width: 80vw;
     background-color: var(--lightblue);
-    /* backdrop-filter: blur(10px); */
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 
-    position: relative;
 }
 
 .intro {
@@ -130,9 +128,115 @@
     overflow: hidden;
 }
 
+.quizCard p:nth-child(1) {
+    color: blueviolet;
+    cursor: pointer;
+}
+
+
+.quizCard p:nth-child(1):hover {
+    font-weight: bold;
+}
+
 .quizCard p:last-child {
     color: blueviolet;
     font-weight: bold;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+
+@media (max-width: 1000px){
+
+    .form {
+        margin: 2rem 0;
+        padding: 1rem;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+    
+        width: 85vw;
+        background-color: var(--lightblue);
+        /* backdrop-filter: blur(10px); */
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+
+    }
+
+    .intro {
+        margin: 1rem 0;
+        width: 100%;
+        font-size: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .logoutBtn {
+        font-size: 1rem;
+        border: 1px solid crimson;
+    }
+
+    .button {
+        font-size: 1rem;
+    }
+
+    .nav {
+        border-bottom: 2px solid var(--lightblue);
+    }
+
+    .navtab {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .quizzesHeading {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: auto;
+    }
+
+    .quizDetailsTab {
+        background-color: var(--darkblue);
+        color: gray;
+        padding: 1rem;
+        font-size: 0.6rem;
+        width: 100%;
+    
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: 1.5fr 1.5fr 1.5fr 0.5fr;
+    }
+
+    .quizCard {
+        color: white;
+        padding: 1rem;
+        font-size: 0.6rem;
+        width: 100%;
+    
+        display: grid;
+        grid-template-columns: 1.5fr 1.5fr 1.5fr 0.5fr;
+    }
+
+    .quizCard p {
+        font-weight: bold;
+    }
+
+    .quizCard p:nth-child(1) {
+        color: red;
+        cursor: pointer;
+    }
+
+    .quizCard p:last-child {
+        color: blueviolet;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    
 }

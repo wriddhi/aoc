@@ -24,7 +24,6 @@ const QuizList = ({quiz, qrCode, setQrCode, setQrCodeUrl}) => {
 
   const handleQrCode = () => {
     setQrCodeUrl(`/quiz/${quiz.id}`)
-    // setQrCodeUrl(`www.pornhub.com`)
     setQrCode(!qrCode)
   }
 
@@ -76,7 +75,7 @@ function Quizzes() {
 
   return (
     <>
-      {qrCode ? <QrCode url={qrCodeUrl} visible={qrCode} hideQrCode={setQrCode}/> : null}
+      {qrCode ? <QrCode url={qrCodeUrl} visible={qrCode} setQrCode={setQrCode}/> : null}
       <Link href={'/create-new-quiz'}><button className={styles.button}>Create New Quiz</button></Link>
       <main className={styles.form}>
         <h3 className={styles.quizzesHeading}>Your quizzes</h3>
