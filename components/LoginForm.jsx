@@ -1,16 +1,21 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from '../styles/Login.module.css'
 import Link from 'next/link'
 
-import { auth } from '../firebaseConfig';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useAuth } from '../contexts/authContext';
-import { useRouter } from 'next/router';
+import { auth, db } from '../firebaseConfig'
+import { doc, getDoc } from 'firebase/firestore'
+import { useAuth } from '../contexts/authContext'
+import { useRouter } from 'next/router'
 
 function LoginForm() {
 
+    
     const router = useRouter()
-    const { user, login } = useAuth()
+    const { user, setUser, login } = useAuth()
+    
+    if(user) {
+        router.push('/dashboard')
+    }
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -38,19 +43,23 @@ function LoginForm() {
 
     const handleLogin = async(e) => {
         e.preventDefault()
-        await login(email, password)
-        .then((userCredential) => {
-            // console.log(userCredential)
-            router.push('/dashboard')
+        const userRef = await login(email, password).then((userCredential) => {
+            return doc(db, 'users', userCredential.user.uid)
         })
-        .catch((error) => {
+        .catch(error => {
             setStatus('invalid login details')
-            // alert(error)
+            return
         });
+
+        if(!userRef) {
+            return
+        }
+        // at this  point user is eligible for login as they entered correct login details, hence we get all their data
+        router.push('/dashboard')
     }
 
     return (
-        <form action='/' className={styles.form}>
+        <form action='/login' className={styles.form}>
             <h1>LOGIN</h1>
             {handleStatus()}
             <section className={styles.formGroup}>

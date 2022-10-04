@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {BsFillEyeFill, BsFillEyeSlashFill} from 'react-icons/bs'
 
-import { app, auth, db } from '../firebaseConfig'
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore'
+import { auth, db } from '../firebaseConfig'
+import { collection, setDoc, doc } from 'firebase/firestore'
 import { updateProfile } from 'firebase/auth'
 
 import  { useAuth } from '../contexts/authContext'
@@ -13,7 +13,7 @@ import  { useAuth } from '../contexts/authContext'
 
 function SignUpForm() {
 
-    const { user, setUser, signup } = useAuth()
+    const { signup } = useAuth()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -94,12 +94,12 @@ function SignUpForm() {
 
         const userInfo = {
             email,
-            "first_name": fname,
-            "last_name": lname,
+            first_name: fname,
+            last_name: lname,
             password,
             designation,
             country,
-            mobile
+            phoneNumber: mobile
         }
 
         if((email && fname && lname && country && designation && password && mobile) == false){
@@ -111,21 +111,29 @@ function SignUpForm() {
             return
         }
 
-        signup(userInfo.email, userInfo.password)
-        .then((userCredential) => {
+        // Signup user through the AuthContext function which creates new authorized user with firebase project
+        signup(userInfo.email, userInfo.password).then((userCredential) => {
+            // Creating a reference to firestore collection named users
             const userRef = collection(db, 'users')
+
+            // userInfo will be stored in localstorage so we delete password
             delete userInfo.password
-            userInfo["userID"] = userCredential.user.uid
-            // console.log(userCredential)
+            // add the uid to userInfo object for future use, safe to be exposed to others
+            userInfo["uid"] = userCredential.user.uid
+
+            // updating firebase project authorized user detail's displayName property
             updateProfile(auth.currentUser, {
                 displayName: userInfo.first_name
             }).then(() => {
-            
+            // we don't need to do anything if the update is successful
             }).catch((error) => {
                 console.error(error)
             })
+
+            // Actually store all the user's data as a document inside the userRef collection reference
             setDoc(doc(userRef, userCredential.user.uid), userInfo)
-            console.log(auth.currentUser)
+
+            // Signup is complete, move on to login
             router.push('/login')
         })
         .catch((error) => {

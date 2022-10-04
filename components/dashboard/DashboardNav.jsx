@@ -4,34 +4,36 @@ import Profile from './Profile'
 import Quizzes from './Quizzes'
 import { useAuth } from '../../contexts/authContext'
 
-import { app, auth, db } from '../../firebaseConfig'
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import { db } from '../../firebaseConfig'
+import { doc, getDoc } from 'firebase/firestore'
 
 function DashboardNav() {
 
-    const { user, logout } = useAuth()
-
-
+    const { user, setUser, logout } = useAuth()
+    const [ currentUser, setCurrentUser ] = useState(null)
     const [tab, setTab] = useState('profile')
-    const [userData, setUserData] = useState(null)
 
-    const userRef = doc(db, 'users', user.uid)
-
-    const gatherDoc = async() => {
-        await getDoc(userRef)
-        .then(data => {
-            if(userData == null){
-                setUserData(data.data())
-                // console.log(userData)
+    const getUser = async() => {
+        console.log("Gathering info for => ", user.uid)
+        const userRef = doc(db, 'users', user.uid)
+        await getDoc(userRef).then(data => {
+            // Store all of the user's details in local storage to remember user and avoid logging in everytime page refreshes
+            for(const detail in data.data()) {
+                // console.log("Setting user")
+                localStorage.setItem(detail, data.data()[detail])
             }
-        }).catch(error => {alert(error)})
+
+            const authUser = data.data()
+            setUser(authUser)
+        })
     }
 
-    gatherDoc()
-
-    // useEffect(() => {
-    //     gatherDoc()
-    // }, [])
+    useEffect(() => {
+        if(user){
+            getUser(user)
+        }
+    }, [])
+    
 
     useEffect(() => {
         if(tab==='profile'){
@@ -46,8 +48,7 @@ function DashboardNav() {
 
   return (
     <>
-        <h1 className={styles.intro}>Welcome to Dashboard, {userData?userData.first_name:user.email}
-            {console.log('User by dashboard ', user)}
+        <h1 className={styles.intro}>Welcome to Dashboard, {user.first_name}
             <button className={styles.logoutBtn} onClick={()=>{logout()}}>Logout</button>
         </h1>
 
@@ -56,7 +57,7 @@ function DashboardNav() {
             <section id="quizzes-tab" className={styles.navtab}><span onClick={()=>setTab('quizzes')}>Quizzes</span></section>
         </nav>
 
-        {tab=='profile'?<Profile user={userData}/>:<Quizzes/>}
+        {tab=='profile'?<Profile user={user}/>:<Quizzes/>}
     </>
   )
 }

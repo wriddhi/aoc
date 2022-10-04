@@ -4,18 +4,12 @@ import { useAuth } from '../contexts/authContext'
 
 const ProtectedRoute = ({children}) => {
 
-    const { user } = useAuth()
+    const { user, setUser } = useAuth()
     const router = useRouter()
 
     useEffect(() => {
-        if(!user){
-            const localUser = localStorage.getItem("user")
-            if(!localUser){
-                router.push('/login')
-            }
-            // else{
-            //     console.log('User not found')
-            // }
+        if(!user && localStorage.length===0) {
+            router.push('/login')
         }
     }, [user])
 

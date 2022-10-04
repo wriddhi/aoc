@@ -7,16 +7,7 @@ import { useAuth } from '../contexts/authContext'
 import { useEffect } from 'react'
 import DashboardNav from '../components/dashboard/DashboardNav'
 
-export default function Dashboard() {
-
-  const { user, logout } = useAuth()
-
-  localStorage.setItem("user", user.uid)
-  
-  // useEffect(() => {
-  //   localStorage.setItem("user", user.uid)
-  // }, [])
-  
+export default function Dashboard() {  
 
   return (
     <div className={styles.container}>

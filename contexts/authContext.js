@@ -11,15 +11,16 @@ export const AuthContextProvider = ({children}) => {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
-    
+
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if(user){
+        const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+            if(authUser){
+                console.log(user)
                 setUser({
-                    uid: user.uid,
-                    email: user.email,
-                    displayName: user.displayName,
-                    phoneNumber: user.phoneNumber
+                    uid: authUser.uid,
+                    email: authUser.email,
+                    displayName: authUser.displayName,
+                    phoneNumber: authUser.phoneNumber
                 })
             }else{
                 setUser(null)
@@ -41,15 +42,16 @@ export const AuthContextProvider = ({children}) => {
     }
     
     const router = useRouter()
+
     const logout = async() => {
         setUser(null)
+        localStorage.clear()
         await signOut(auth)
-        localStorage.removeItem("user")
         router.push('/login')
     }
 
     return(
-        <AuthContext.Provider value={{user, login, signup, logout}}>
+        <AuthContext.Provider value={{user, setUser, login, signup, logout}}>
             {loading ? null : children}
         </AuthContext.Provider>
     )

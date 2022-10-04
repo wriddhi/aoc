@@ -47,7 +47,12 @@ function Quizzes() {
   
   const getQuizzes = async() => {
 
-    // console.log("Getting your quizzes . . .")
+    if(quizzes.length > 0 ) {
+      console.log("You have quizzes => ", quizzes)
+      return
+    }
+
+    console.log("Getting your quizzes . . .")
 
     const querySnapshot = await getDocs(query(collection(db, "quizzes"), where("author", "==", user.uid)))
 
@@ -64,11 +69,9 @@ function Quizzes() {
     setQuizzes(quizArray)
   }
 
-  getQuizzes()
-
-  // useEffect(() => {
-  //   return getQuizzes
-  // }, [])
+  useEffect(() => {
+    return getQuizzes
+  }, [])
   
   // useEffect(() => {
   //   console.log("Quizzes array was changed")
@@ -89,7 +92,7 @@ function Quizzes() {
             <p>SHARE</p>
           </span> :
           <span className={styles.quizDetailsTab}>
-            <p>NO QUIZZES TO SHOW</p>
+            <p className={styles.noQuizDetails}>NO QUIZZES TO SHOW</p>
           </span>
         }
         {quizzes.map((quiz) => (<QuizList key={quiz.id} quiz={quiz} qrCode={qrCode} setQrCode={setQrCode} setQrCodeUrl={setQrCodeUrl}/>))}
